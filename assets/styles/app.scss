@@ -1,0 +1,36 @@
+// assets/styles/bootstrap.scss
+
+// customize some Bootstrap variables
+
+
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/scss/bootstrap";
+@import "bootstrap";
+
+// variable color style_guide
+$black: #000000;
+$silver: #c4bbaf;
+$rufous: #ad0303;
+
+// NavBar
+.nav-bar {
+  background-color: $black;
+  a {
+    color: $rufous;
+  }
+  .btn-outline-success {
+    color: $rufous;
+    border-color: $rufous;
+  }
+  .btn-outline-success:hover {
+    background-color: $silver;
+  }
+  .navbar-toggler {
+    background-color: $silver;
+  }
+  .burger {
+    padding-top: 5px;
+  }
+}
+
+// End NavBar
