@@ -17,4 +17,12 @@ class ProgramController extends AbstractController
             'website' => 'Wild Séries',
         ]);
     }
+
+    /**
+     * @Route("/programs/show/{page}", requirements={"page"="\d+"}, methods={"GET"}, name="program_show")
+     */
+    public function show(int $page): Response
+    {
+        return $this->render('program/list.html.twig', ['page' => $page]);
+    }
 }
