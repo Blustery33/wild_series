@@ -82,7 +82,7 @@ class CategoryController extends AbstractController
             ->findBy(
                 ['category' => $category],
                 ['id' => 'DESC'],
-                3
+                10
             );
         if (!$programs){
             throw $this->createNotFoundException(
