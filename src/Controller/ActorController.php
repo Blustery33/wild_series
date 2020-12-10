@@ -31,7 +31,7 @@ class ActorController extends AbstractController
     /**
      * @Route("/{id<^[0-9]+$>}", methods={"GET"}, name="show")
      */
-    public function show(Actor $actor, Program $program):Response
+    public function show(Actor $actor):Response
     {
         $program = $this->getDoctrine()
             ->getRepository(Program::class)
