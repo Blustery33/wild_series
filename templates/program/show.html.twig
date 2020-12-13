@@ -15,7 +15,7 @@
                     Saison {{ season.number }} </br>
                     Année {{ season.year }}
                     <p>{{ season.description }}</p>
-                    <a href="{{ path("program_season_show", {"program_id": program.id, "season_id": season.id})}}">Voir la saison</a>
+                    <a href="{{ path("program_season_show", {"slug": program.slug, "season_id": season.id})}}">Voir la saison</a>
                 </li>
                 {% endfor %}
             </ul>
