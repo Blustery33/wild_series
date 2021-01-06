@@ -11,6 +11,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -43,7 +45,7 @@ class ProgramController extends AbstractController
      *
      * @Route("/new", name="new")
      */
-    public function new(Request $request, Slugify $slugify) : Response
+    public function new(Request $request, Slugify $slugify, MailerInterface $mailer) : Response
     {
         // Create a new Category Object
         $program = new Program();
@@ -63,6 +65,15 @@ class ProgramController extends AbstractController
             $entityManager->persist($program);
             // Flush the persisted object
             $entityManager->flush();
+
+            $email= (new Email())
+                ->from($this->getParameter('mailer_from'))
+                ->to('279a1c6a60-f5211c@inbox.mailtrap.io')
+                ->subject('Une nouvelle série viens d\'être publiée !')
+                ->html($this->renderView('program/newProgramEmail.html.twig', ['program' => $program]));
+
+            $mailer->send($email);
+
             // Finally redirect to categories list
             return $this->redirectToRoute('program_index');
         }
